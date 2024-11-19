@@ -1,5 +1,5 @@
 import {useState} from 'react'
-
+import toast, { Toaster } from 'react-hot-toast';
 
 function AddNote({notesave}){
 
@@ -23,12 +23,14 @@ function AddNote({notesave}){
             setStoreNote('');
             setStoreTitle('');
         }else{
-            alert("Enter the Title and Body Text..")
+            toast.error('Hey You Forgot To Enter Title and Body!');
+        
         }
     }
 
 
     return(
+        <>
     <div className="note addnote">
         <div>
             <input type='text' className="noteTitle" onChange={collectTitle} value={storeTitle} placeholder='Enter the Title'></input>
@@ -37,9 +39,10 @@ function AddNote({notesave}){
         <div className="note-footer">
             <span>Remaining:{characterLimit - storeNote.length}</span>
             <button className="savebtn" onClick={handleSave}>Save</button>
-        </div>
-
-    </div>    
+        </div>     
+    </div>
+    <Toaster />
+    </>
 )
 
 }
